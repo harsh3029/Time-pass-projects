@@ -30,6 +30,8 @@ it works offline and your text never leaves the device.
 1. Open the **Actions** tab of this repo → the latest **AnyTranslate APK** run → download the `AnyTranslate-apk` artifact and unzip it.
    (Or push a tag like `v1.0.0` and grab `AnyTranslate.apk` from **Releases**.)
 2. Copy `AnyTranslate.apk` to your phone and open it (allow "Install unknown apps" when asked).
+   That's the build for almost every modern phone (64-bit ARM). For an old 32-bit phone use
+   `AnyTranslate-armv7.apk`; `AnyTranslate-universal.apk` runs anywhere, including emulators, but is much bigger.
 3. Open AnyTranslate → **Anywhere** → **Turn on screen translation**, and switch on *AnyTranslate screen translator* in Accessibility settings.
    * **Switch greyed out?** On Android 13+, sideloaded apps need: *Settings → Apps → AnyTranslate → ⋮ → Allow restricted settings*, then try again.
 4. The first time you use a language, its pack downloads (~30 MB). After that it's offline.
@@ -46,8 +48,8 @@ Each CI run signs with a fresh debug key, so if an update won't install over the
 
 ```bash
 cd AnyTranslate
-./gradlew assembleDebug      # app/build/outputs/apk/debug/app-debug.apk
-./gradlew assembleRelease    # minified, signed with the debug key
+./gradlew assembleDebug      # app/build/outputs/apk/debug/
+./gradlew assembleRelease    # app/build/outputs/apk/release/ (minified, signed with the debug key)
 ```
 Requires JDK 17 and the Android SDK (API 35). Or open the `AnyTranslate` folder in Android Studio.
 

@@ -39,6 +39,21 @@ android {
     buildFeatures {
         compose = true
     }
+
+    // ML Kit ships native libraries for every CPU type; one APK per type keeps the download small.
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a", "armeabi-v7a")
+            isUniversalApk = true
+        }
+    }
+
+    packaging {
+        // Compress native libraries inside the APK (smaller download; extracted at install).
+        jniLibs.useLegacyPackaging = true
+    }
 }
 
 dependencies {
