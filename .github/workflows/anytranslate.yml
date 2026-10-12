@@ -1,0 +1,55 @@
+name: AnyTranslate APK
+
+on:
+  push:
+    paths:
+      - "AnyTranslate/**"
+      - ".github/workflows/anytranslate.yml"
+  pull_request:
+    paths:
+      - "AnyTranslate/**"
+      - ".github/workflows/anytranslate.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AnyTranslate
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Build debug and release APKs
+        run: ./gradlew --no-daemon --stacktrace assembleDebug assembleRelease
+
+      - name: Collect APKs
+        run: |
+          mkdir -p ../apk
+          cp app/build/outputs/apk/release/app-release.apk ../apk/AnyTranslate.apk
+          cp app/build/outputs/apk/debug/app-debug.apk ../apk/AnyTranslate-debug.apk
+          ls -la ../apk
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: AnyTranslate-apk
+          path: apk/*.apk
+
+      # Push a tag like v1.0.0 to publish the APK as a GitHub release you can download on your phone.
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: apk/AnyTranslate.apk

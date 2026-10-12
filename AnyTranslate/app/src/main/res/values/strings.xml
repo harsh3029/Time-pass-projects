@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AnyTranslate</string>
+    <string name="quick_translate_label">AnyTranslate</string>
+    <string name="tile_label">Translate screen</string>
+    <string name="tile_ready">Tap to translate</string>
+    <string name="tile_setup">Needs setup</string>
+    <string name="bubble_description">Translate screen</string>
+
+    <string name="accessibility_label">AnyTranslate screen translator</string>
+    <string name="accessibility_description">Translates the text on your screen when you tap the floating AnyTranslate button, the Quick Settings tile or the accessibility shortcut. AnyTranslate reads the visible text (and, if enabled, a screenshot for text inside images) only at that moment, translates it on your device and draws the translation on top. Nothing is stored or sent anywhere.</string>
+
+    <string name="overlay_translating">Translating…</string>
+    <string name="overlay_downloading">Downloading the %1$s language pack (one time only)…</string>
+    <string name="overlay_no_text">No text found on this screen. Tap to close.</string>
+    <string name="overlay_already">Everything here is already in %1$s. Tap to close.</string>
+    <string name="overlay_done">%1$s → %2$s · Tap a box to see the original · Tap outside to close</string>
+    <string name="overlay_done_mixed">→ %1$s · Tap a box to see the original · Tap outside to close</string>
+    <string name="overlay_failed">Translation failed. Tap to close.</string>
+</resources>
